@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ public class MolarMass {
         molarMass = 0.0;
         this.molecule = molecule;
         atoms = this.alphabetize();
+        molarMass = this.calculate();
     }
     public String[] alphabetize() {
         ArrayList<String> atoms = new ArrayList();
@@ -61,7 +61,28 @@ public class MolarMass {
         return result;
 
     }
+    public double calculate() {
+        int count = 0;
+        String line = list.nextLine();
+        String temp;
+        int amount = 0;
+        while (count < this.atoms.length) {
+            temp = this.atoms[count];
+            if (temp.length() == 1 && temp.equals(line.substring(0, 1))) {
+                amount += Integer.valueOf(line.substring(2));
+                count++;
+            } else if (temp.length() == 2 && temp.equals(line.substring(0, 2))) {
+                amount += Integer.valueOf(line.substring(3));
+                count++;
+            } else
+                line = list.nextLine();
+        }
+        return (double) amount / 1000;
+    }
     public String[] getAtoms() {
         return this.atoms;
+    }
+    public double getMolarMass() {
+        return this.molarMass;
     }
 }
