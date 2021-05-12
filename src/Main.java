@@ -9,5 +9,6 @@ public class Main {
         }
         double x = mass.getMolarMass();
         System.out.println(x);
+        ChemistryCalculatorGUI miss = new ChemistryCalculatorGUI();
     }
 }
