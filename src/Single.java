@@ -1,7 +1,7 @@
 public class Single {
 
     private MolarMass molecule;
-    private double mol, gram, result;
+    private double mol, gram;
 
     // mol to gram
 
@@ -9,7 +9,6 @@ public class Single {
         this.molecule = new MolarMass(molecule);
         this.mol = mol;
         this.gram = 0.0;
-        result = 0.0;
     }
 
     // gram to mol
@@ -18,10 +17,9 @@ public class Single {
         this.molecule = new MolarMass(molecule);
         this.mol = 0.0;
         this.gram = gram;
-        result = 0.0;
     }
 
-    public double conversion() {
+    public double singleConversion() {
         if (this.gram == 0.0) {
             return this.mol * (molecule.getMolarMass() / 1000);
         } else {

@@ -5,15 +5,15 @@ import java.awt.event.ActionListener;
 
 public class ChemistryCalculatorGUI implements ActionListener {
     private final JFrame frame;
-    private final JButton back, molarMass, calculateMolarMass, molToGram, calculateMolToGram, gramToMol, calculateGramToMol;
-    private final JPanel page, top, conversionType, molarMassSlide, molToGramSlide, gramToMolSlide;
-    private final JLabel enterMoleculeMolarMass, enterMolMolToGram, enterMoleculeMolToGram, enterGramGramToMol, enterMoleculeGramToMol;
-    private final JTextField moleculeMolarMass, resultMolarMass, moleculeMolToGram, molMolToGram, resultMolToGram, moleculeGramToMol, gramGramToMol, resultGramToMol;
+    private final JButton back, molarMass, calculateMolarMass, molToGram, calculateMolToGram, gramToMol, calculateGramToMol, doubleMolToGram;
+    private final JPanel page, top, conversionType, singleColumn, doubleColumn, molarMassSlide, molToGramSlide, gramToMolSlide, dMolToGramSlide, dGramToMolSlide;
+    private final JLabel singleLabel, doubleLabel, enterMoleculeMolarMass, enterMolMolToGram, enterMoleculeMolToGram, enterGramGramToMol, enterMoleculeGramToMol, enterMolecule1DMolToGram, enterMolecule2DMolToGram;
+    private final JTextField moleculeMolarMass, resultMolarMass, moleculeMolToGram, molMolToGram, resultMolToGram, moleculeGramToMol, gramGramToMol, resultGramToMol, molecule1DMolToGram, molecule2DMolToGram;
     private final CardLayout cardLayout;
     public ChemistryCalculatorGUI() {
         frame = new JFrame("Chemistry Calculator");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(500, 200);
+        frame.setSize(500, 400);
         frame.setLayout(new BorderLayout());
         back = new JButton("Back");
         molarMass = new JButton("Molar Mass");
@@ -22,17 +22,26 @@ public class ChemistryCalculatorGUI implements ActionListener {
         calculateMolToGram = new JButton("Calculate Grams");
         gramToMol = new JButton("Grams to Moles");
         calculateGramToMol = new JButton("Calculate Moles");
+        doubleMolToGram = new JButton("Moles to Grams");
         page = new JPanel(new CardLayout());
         top = new JPanel();
         conversionType = new JPanel();
+        singleColumn = new JPanel();
+        doubleColumn = new JPanel();
         molarMassSlide = new JPanel();
         molToGramSlide = new JPanel();
         gramToMolSlide = new JPanel();
+        dMolToGramSlide = new JPanel();
+        dGramToMolSlide = new JPanel();
+        singleLabel = new JLabel("Single");
+        doubleLabel = new JLabel("Double");
         enterMoleculeMolarMass = new JLabel("Enter Molecule");
         enterMoleculeMolToGram = new JLabel("Enter Molecule");
         enterMolMolToGram = new JLabel("Enter Moles");
         enterMoleculeGramToMol = new JLabel("Enter Molecule");
         enterGramGramToMol = new JLabel("Enter Grams");
+        enterMolecule1DMolToGram = new JLabel("Enter Molecule 1");
+        enterMolecule2DMolToGram = new JLabel("Enter Molecule 2");
         moleculeMolarMass = new JTextField(5);
         resultMolarMass = new JTextField(5);
         moleculeMolToGram = new JTextField(5);
@@ -41,12 +50,20 @@ public class ChemistryCalculatorGUI implements ActionListener {
         moleculeGramToMol = new JTextField(5);
         gramGramToMol = new JTextField(5);
         resultGramToMol = new JTextField(5);
+        molecule1DMolToGram = new JTextField(5);
+        molecule2DMolToGram = new JTextField(5);
         cardLayout = new CardLayout();
         page.setLayout(cardLayout);
-        conversionType.setLayout(new BoxLayout(conversionType, BoxLayout.LINE_AXIS));
-        conversionType.add(molarMass);
-        conversionType.add(molToGram);
-        conversionType.add(gramToMol);
+        singleColumn.setLayout(new BoxLayout(singleColumn, BoxLayout.Y_AXIS));
+        singleColumn.add(singleLabel);
+        singleColumn.add(molarMass);
+        singleColumn.add(molToGram);
+        singleColumn.add(gramToMol);
+        doubleColumn.setLayout(new BoxLayout(doubleColumn, BoxLayout.Y_AXIS));
+        doubleColumn.add(doubleLabel);
+        doubleColumn.add(doubleMolToGram);
+        conversionType.add(singleColumn);
+        conversionType.add(doubleColumn);
         molarMassSlide.add(enterMoleculeMolarMass);
         molarMassSlide.add(moleculeMolarMass);
         molarMassSlide.add(calculateMolarMass);
@@ -63,18 +80,27 @@ public class ChemistryCalculatorGUI implements ActionListener {
         gramToMolSlide.add(gramGramToMol);
         gramToMolSlide.add(calculateGramToMol);
         gramToMolSlide.add(resultGramToMol);
+        dGramToMolSlide.add(enterMolecule1DMolToGram);
+        dGramToMolSlide.add(molecule1DMolToGram);
+        dGramToMolSlide.add(enterMolecule2DMolToGram);
+        dGramToMolSlide.add(molecule2DMolToGram);
         top.add(back);
         page.add("conversionType", conversionType);
         page.add("molarMassSlide", molarMassSlide);
         page.add("molToGramSlide", molToGramSlide);
         page.add("gramToMolSlide", gramToMolSlide);
+        page.add("dMolToGramSlide", dMolToGramSlide);
         frame.add(top, BorderLayout.NORTH);
         frame.add(page, BorderLayout.CENTER);
         frame.setVisible(true);
         back.addActionListener(this);
         molarMass.addActionListener(this);
         molToGram.addActionListener(this);
+        molToGram.setActionCommand("Single Moles to Grams");
         gramToMol.addActionListener(this);
+        gramToMol.setActionCommand("Single Grams to Moles");
+        doubleMolToGram.addActionListener(this);
+        doubleMolToGram.setActionCommand("Double Moles to Grams");
         calculateMolarMass.addActionListener(this);
         calculateMolToGram.addActionListener(this);
         calculateGramToMol.addActionListener(this);
@@ -89,16 +115,18 @@ public class ChemistryCalculatorGUI implements ActionListener {
         } else if (buttonName.equals("Back")) {
             cardLayout.show(page, "conversionType");
             this.setTextFields();
-        } else if (buttonName.equals("Moles to Grams")) {
+        } else if (buttonName.equals("Single Moles to Grams")) {
             cardLayout.show(page, "molToGramSlide");
         } else if (buttonName.equals("Calculate Grams")) {
             Single grams = new Single(moleculeMolToGram.getText(), Double.valueOf(molMolToGram.getText()));
-            resultMolToGram.setText(String.valueOf(grams.conversion()));
-        } else if (buttonName.equals("Grams to Moles")) {
+            resultMolToGram.setText(String.valueOf(grams.singleConversion()));
+        } else if (buttonName.equals("Single Grams to Moles")) {
             cardLayout.show(page, "gramToMolSlide");
         } else if (buttonName.equals("Calculate Moles")) {
             Single moles = new Single(Double.valueOf(gramGramToMol.getText()), moleculeGramToMol.getText());
-            resultGramToMol.setText(String.valueOf(moles.conversion()));
+            resultGramToMol.setText(String.valueOf(moles.singleConversion()));
+        } else if (buttonName.equals("Double Moles to Grams")) {
+            cardLayout.show(page, "dMolToGramSlide");
         }
     }
     public void setTextFields() {
