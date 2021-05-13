@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 public class MolarMass {
     private Scanner list;
-    private double molarMass;
+    private int molarMass;
     private String molecule;
     private String[] atoms;
     public MolarMass(String molecule) {
@@ -13,7 +13,7 @@ public class MolarMass {
         } catch (Exception e) {
             System.out.println("File not found");
         }
-        molarMass = 0.0;
+        molarMass = 0;
         this.molecule = molecule;
         atoms = this.alphabetize();
         molarMass = this.calculate();
@@ -61,7 +61,7 @@ public class MolarMass {
         return result;
 
     }
-    public double calculate() {
+    public int calculate() {
         int count = 0;
         String line = list.nextLine();
         String temp;
@@ -77,10 +77,7 @@ public class MolarMass {
             } else
                 line = list.nextLine();
         }
-        return (double) amount / 1000;
-    }
-    public String[] getAtoms() {
-        return this.atoms;
+        return amount;
     }
     public double getMolarMass() {
         return this.molarMass;
