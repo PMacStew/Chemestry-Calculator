@@ -80,10 +80,10 @@ public class ChemistryCalculatorGUI implements ActionListener {
         gramToMolSlide.add(gramGramToMol);
         gramToMolSlide.add(calculateGramToMol);
         gramToMolSlide.add(resultGramToMol);
-        dGramToMolSlide.add(enterMolecule1DMolToGram);
-        dGramToMolSlide.add(molecule1DMolToGram);
-        dGramToMolSlide.add(enterMolecule2DMolToGram);
-        dGramToMolSlide.add(molecule2DMolToGram);
+        dMolToGramSlide.add(enterMolecule1DMolToGram);
+        dMolToGramSlide.add(molecule1DMolToGram);
+        dMolToGramSlide.add(enterMolecule2DMolToGram);
+        dMolToGramSlide.add(molecule2DMolToGram);
         top.add(back);
         page.add("conversionType", conversionType);
         page.add("molarMassSlide", molarMassSlide);
