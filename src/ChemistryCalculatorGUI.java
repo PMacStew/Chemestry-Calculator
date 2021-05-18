@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 public class ChemistryCalculatorGUI implements ActionListener {
     private final JFrame frame;
-    private final JButton back, molarMass, calculateMolarMass, molToGram, calculateMolToGram, gramToMol, calculateGramToMol, doubleMolToGram;
+    private final JButton back, help, molarMass, calculateMolarMass, molToGram, calculateMolToGram, gramToMol, calculateGramToMol, doubleMolToGram;
     private final JPanel page, top, conversionType, singleColumn, doubleColumn, molarMassSlide, molToGramSlide, gramToMolSlide, dMolToGramSlide, dGramToMolSlide;
-    private final JLabel singleLabel, doubleLabel, enterMoleculeMolarMass, enterMolMolToGram, enterMoleculeMolToGram, enterGramGramToMol, enterMoleculeGramToMol, enterMolecule1DMolToGram, enterMolecule2DMolToGram;
-    private final JTextField moleculeMolarMass, resultMolarMass, moleculeMolToGram, molMolToGram, resultMolToGram, moleculeGramToMol, gramGramToMol, resultGramToMol, molecule1DMolToGram, molecule2DMolToGram;
+    private final JLabel singleLabel, doubleLabel, enterMoleculeMolarMass, enterMolMolToGram, enterMoleculeMolToGram, enterGramGramToMol, enterMoleculeGramToMol, enterMolecule1DMolToGram, enterMolecule2DMolToGram, enterMolDMolToGram;
+    private final JTextField moleculeMolarMass, resultMolarMass, moleculeMolToGram, molMolToGram, resultMolToGram, moleculeGramToMol, gramGramToMol, resultGramToMol, molecule1DMolToGram, molecule2DMolToGram, molDMolToGram;
     private final CardLayout cardLayout;
     public ChemistryCalculatorGUI() {
         frame = new JFrame("Chemistry Calculator");
@@ -16,6 +16,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
         frame.setSize(500, 400);
         frame.setLayout(new BorderLayout());
         back = new JButton("Back");
+        help = new JButton("Help");
         molarMass = new JButton("Molar Mass");
         calculateMolarMass = new JButton("Calculate Molar Mass");
         molToGram = new JButton("Moles to Grams");
@@ -42,6 +43,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
         enterGramGramToMol = new JLabel("Enter Grams");
         enterMolecule1DMolToGram = new JLabel("Enter Molecule 1");
         enterMolecule2DMolToGram = new JLabel("Enter Molecule 2");
+        enterMolDMolToGram = new JLabel("Enter Moles");
         moleculeMolarMass = new JTextField(5);
         resultMolarMass = new JTextField(5);
         moleculeMolToGram = new JTextField(5);
@@ -52,6 +54,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
         resultGramToMol = new JTextField(5);
         molecule1DMolToGram = new JTextField(5);
         molecule2DMolToGram = new JTextField(5);
+        molDMolToGram = new JTextField(5);
         cardLayout = new CardLayout();
         page.setLayout(cardLayout);
         singleColumn.setLayout(new BoxLayout(singleColumn, BoxLayout.Y_AXIS));
@@ -84,7 +87,10 @@ public class ChemistryCalculatorGUI implements ActionListener {
         dMolToGramSlide.add(molecule1DMolToGram);
         dMolToGramSlide.add(enterMolecule2DMolToGram);
         dMolToGramSlide.add(molecule2DMolToGram);
+        dMolToGramSlide.add(enterMolDMolToGram);
+        dMolToGramSlide.add(molDMolToGram);
         top.add(back);
+        top.add(help);
         page.add("conversionType", conversionType);
         page.add("molarMassSlide", molarMassSlide);
         page.add("molToGramSlide", molToGramSlide);
@@ -94,6 +100,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
         frame.add(page, BorderLayout.CENTER);
         frame.setVisible(true);
         back.addActionListener(this);
+        help.addActionListener(this);
         molarMass.addActionListener(this);
         molToGram.addActionListener(this);
         molToGram.setActionCommand("Single Moles to Grams");
@@ -127,6 +134,8 @@ public class ChemistryCalculatorGUI implements ActionListener {
             resultGramToMol.setText(String.valueOf(moles.singleConversion()));
         } else if (buttonName.equals("Double Moles to Grams")) {
             cardLayout.show(page, "dMolToGramSlide");
+        } else if (buttonName.equals("Help")) {
+            Instructions instructions = new Instructions("Main", "Yo dude what's popping");
         }
     }
     public void setTextFields() {
