@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.io.File;
 
 public class ChemistryCalculatorGUI implements ActionListener {
     private final JFrame frame;
@@ -10,6 +12,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
     private final JLabel singleLabel, doubleLabel, enterMoleculeMolarMass, enterMolMolToGram, enterMoleculeMolToGram, enterGramGramToMol, enterMoleculeGramToMol, enterMolecule1DMolToGram, enterMolecule2DMolToGram, enterMolDMolToGram;
     private final JTextField moleculeMolarMass, resultMolarMass, moleculeMolToGram, molMolToGram, resultMolToGram, moleculeGramToMol, gramGramToMol, resultGramToMol, molecule1DMolToGram, molecule2DMolToGram, molDMolToGram;
     private final CardLayout cardLayout;
+    private final Font font;
     public ChemistryCalculatorGUI() {
         frame = new JFrame("Chemistry Calculator");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -56,6 +59,26 @@ public class ChemistryCalculatorGUI implements ActionListener {
         molecule2DMolToGram = new JTextField(5);
         molDMolToGram = new JTextField(5);
         cardLayout = new CardLayout();
+        font = new Font("Helvetica Neue", Font.BOLD, 16);
+        back.setFont(font);
+        help.setFont(font);
+        molarMass.setFont(font);
+        calculateMolarMass.setFont(font);
+        molToGram.setFont(font);
+        calculateMolToGram.setFont(font);
+        gramToMol.setFont(font);
+        calculateGramToMol.setFont(font);
+        doubleMolToGram.setFont(font);
+        singleLabel.setFont(font);
+        doubleLabel.setFont(font);
+        enterMoleculeMolarMass.setFont(font);
+        enterMolMolToGram.setFont(font);
+        enterMoleculeMolToGram.setFont(font);
+        enterGramGramToMol.setFont(font);
+        enterMoleculeGramToMol.setFont(font);
+        enterMolecule1DMolToGram.setFont(font);
+        enterMolecule2DMolToGram.setFont(font);
+        enterMolDMolToGram.setFont(font);
         page.setLayout(cardLayout);
         singleColumn.setLayout(new BoxLayout(singleColumn, BoxLayout.Y_AXIS));
         singleColumn.add(singleLabel);
@@ -135,7 +158,7 @@ public class ChemistryCalculatorGUI implements ActionListener {
         } else if (buttonName.equals("Double Moles to Grams")) {
             cardLayout.show(page, "dMolToGramSlide");
         } else if (buttonName.equals("Help")) {
-            Instructions instructions = new Instructions("Main", "Yo dude what's popping");
+            Instructions instructions = new Instructions("Main", findText(1));
         }
     }
     public void setTextFields() {
@@ -147,5 +170,18 @@ public class ChemistryCalculatorGUI implements ActionListener {
         moleculeGramToMol.setText("");
         gramGramToMol.setText("");
         resultGramToMol.setText("");
+    }
+    public String findText(int row) {
+        try {
+            String line = "";
+            Scanner file = new Scanner(new File("files/Instructions"));
+            for (int i = 0; i < row; i++) {
+                line = file.nextLine();
+            }
+            return line;
+        } catch (Exception e) {
+            System.out.println("File not found");
+        }
+        return "";
     }
 }
