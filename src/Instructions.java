@@ -7,7 +7,7 @@ public class Instructions {
     private JScrollPane pane;
     public Instructions(String title, String words) {
         frame = new JFrame(title);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(700, 700);
         frame.setVisible(true);
         area = new JTextArea(words);
