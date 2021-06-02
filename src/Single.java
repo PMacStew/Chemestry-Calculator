@@ -29,9 +29,6 @@ public class Single {
     public double getMol() {
         return this.mol;
     }
-    public double getGram() {
-        return this.gram;
-    }
     public void setMol(double mol) {
         this.mol = mol;
     }

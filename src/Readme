@@ -1,0 +1,53 @@
+1.
+My project makes it easier to do dimensional analysis chemistry operations. It has a GUI class that all the main page code is stored. There are several calculate classes for each operation that are called from this class. There are also several swing classes making it easier to create elements.
+
+2.
+Welcome to the Chemistry Calculator! In this device you will be able to calculate molar mass, grams of a molecule, moles of a molecule and molarity. To access an operation you must press the button that indicates your desired operation. On the top you will see three buttons that say back help and reset. Back returns to the home page, help brings you to useful instructional information which you just clicked on and reset sets all the text fields in the entire program to null. Below that you will see three columns of operations. The first column you see is the single conversion column. Each one of these operations only requires one molecule. Molar mass calculates the molar mass, moles to grams calculates grams given the amount of moles and grams to moles calculates moles given the amount of grams. The second column you see is the double conversion column. Each one of these operations require two molecules. Moles to grams calculates the amount of grams given the amount of moles and the conversion factor, grams to moles calculates the amount of moles given the amount of moles and the conversion factor, moles to moles calculates the amount of moles given the amount of moles and the conversion factor and grams to grams calculates the amount of grams given the amount of grams and the conversion factor.  The third column you see is the molarity conversion column. Each one of these operations only requires one molecule. Molarity to moles calculates the amount of moles given the molarity and the amount of liters, moles to liters calculates the amount of liters given the amount of moles and the molarity, moles to molarity calculates the molarity given the amount of moles and the amount of liters, molarity to grams calculates the amount of grams given the molarity and the amount of liters, grams to liters calculates the amount of liters given the amount of grams and the molarity and grams to molarity calculates the molarity given the amount of grams and the amount of liters. If you click help while on a specific operation you will receive specific instructions on how to proceed.
+
+3.
+Java Files:
+Main
+- The main class that calls the GUI when the program runs.
+ChemistryCalculatorGUI
+- The GUI that stores all of the elements in the panel. This is also where all the action listeners in the entire program are implemented.
+MolarMass
+- Calculates the molar mass of an element that is entered in a text field.
+- Converts the string into an array list of atomic symbols and then goes through an alphabetical file of symbols to find the molar mass for each element.
+LabelTextPanel
+- Creates a JPanel that holds a JLabel and a JTextField.
+- You specify the label text and text field length in the parameters.
+ButtonTextPanel
+- Creates a JPanel that holds a JButton and a JTextField.
+- You specify the label text and text field length in the parameters.
+Single
+- Receives moles grams and molecules as parameters.
+- Uses the singleConversion() method to calculate the value specified by the operation.
+DoublePanel
+- Create a JPanel that holds 5 LabelTextPanels for 2 molecules, the starting unit, and the conversion factor.
+- Also holds 1 ButtonTextPanel to calculate the answer.
+- You specify the starting unit and calculate button in the parameters.
+DoubleConversion
+- Extends Single
+- Receives 2 molecules, grams, moles, type and the conversion factor as parameters.
+- Uses the calculateDouble() method to calculate the value specified in the operation by the type.
+SinglePanel
+- Creates a JPanel that holds 3 LabelTextPanels for the molecule and two specified units.
+- Also holds 1 ButtonTextPanel to calculate the answer.
+- You specify the two specified units and the button in the parameters.
+Instructions
+- Creates a new JFrame that holds instructions on how to operate the operation the main frame is currently on.
+- You specify the slide in the parameters.
+- Loops through a file the amount of times specified and then converts that line of text into a JTextArea.
+
+TextFiles:
+MolarMass
+- Every molecules molar mass specified in integer form in alphabetical order by symbol.
+Instructions
+- Every instruction for each slide on different lines.
+
+4.
+https://www.tutorialspoint.com/swing/swing_cardlayout.htm
+I used this to learn how to use the CardLayout after I was talking to Cameron about what to use in my project. I learned how to create a CardLayout, add slides and flip to different slides.
+
+https://java2blog.com/java-decimalformat/
+I used this to round numbers. I had a problem with doubles carrying a little but of data at the end.

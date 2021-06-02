@@ -3,7 +3,7 @@ import javax.swing.JButton;
 public class DoublePanel {
     private JPanel panel;
     private LabelTextPanel molecule1, molecule2, startingUnit, topConversion, bottomConversion;
-    private LabelButtonPanel calculate;
+    private ButtonTextPanel calculate;
     public DoublePanel(String start, String end) {
         panel = new JPanel();
         molecule1 = new LabelTextPanel("Enter Molecule 1", 5);
@@ -11,7 +11,7 @@ public class DoublePanel {
         startingUnit = new LabelTextPanel("Enter " + start, 5);
         topConversion = new LabelTextPanel("Conversion Factor", 2);
         bottomConversion = new LabelTextPanel("to", 2);
-        calculate = new LabelButtonPanel("Calculate " + end, 5);
+        calculate = new ButtonTextPanel("Calculate " + end, 5);
         panel.add(molecule1.getPanel());
         panel.add(molecule2.getPanel());
         panel.add(startingUnit.getPanel());

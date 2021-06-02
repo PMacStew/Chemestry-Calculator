@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LabelButtonPanel {
+public class ButtonTextPanel {
     private JPanel panel;
     private JButton button;
     private JTextField field;
-    public LabelButtonPanel(String name, int size) {
+    public ButtonTextPanel(String name, int size) {
         panel = new JPanel();
         button = new JButton(name);
         field = new JTextField(size);
@@ -15,12 +15,6 @@ public class LabelButtonPanel {
     }
     public String getString() {
         return field.getText();
-    }
-    public double getDouble() {
-        return Double.valueOf(field.getText());
-    }
-    public int getInt() {
-        return Integer.valueOf(field.getText());
     }
     public JPanel getPanel() {
         return panel;
