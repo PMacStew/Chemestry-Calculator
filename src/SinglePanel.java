@@ -32,4 +32,10 @@ public class SinglePanel {
     public void setText(String x) {
         answer.setText(x);
     }
+    public void setTextNull() {
+        molecule.setText("");
+        panel1.setText("");
+        panel2.setText("");
+        answer.setText("");
+    }
 }

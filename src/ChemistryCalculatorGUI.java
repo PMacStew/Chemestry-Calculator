@@ -1,3 +1,5 @@
+import sun.misc.GC;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -293,6 +295,12 @@ public class ChemistryCalculatorGUI implements ActionListener {
         dGramToMolSlide.setTextNull();
         dMolToMolSlide.setTextNull();
         dGramToGramSlide.setTextNull();
+        LCTM.setTextNull();
+        MCTL.setTextNull();
+        MLTC.setTextNull();
+        LCTG.setTextNull();
+        GCTL.setTextNull();
+        GLTC.setTextNull();
     }
     public String findText(int row) {
         try {
